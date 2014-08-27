@@ -1,0 +1,58 @@
+<!DOCTYPE html>  
+<html lang="en"><head>  
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title>JavaScript Form Validation using a sample registration form</title>  
+<link rel='stylesheet' href='validation.css' type='text/css' />  
+<script src="validations.js"></script>  
+</head>  
+<body bgcolor="lightblue" onload="document.forms['registration']['userid'].focus();" > 
+
+<!-- STATUS BAR DISPLAY ON TOP -->
+<p id="status1"><b>Welcome!</b> Fill the form correctly. <a id="close" onclick="document.getElementById('status1').style.display='none';">X</a></p>
+<p id="status3"><b>Well done!</b> You successfully read this important alert message and completed filling form correctly. <a id="close" onclick="document.getElementById('status3').style.display='none';">X</a></p>
+<p id="status2"><b>Well done!</b> Form submitted successfully. <a id="close" onclick="document.getElementById('status2').style.display='none';">X</a></p>
+
+<!-- BACK GROUND COLOR CHANGING PROPERTIES -->
+<div style="top:-20px;position:relative;">
+<input type="radio" name="name" onclick="check(this.value)" value="lightblue" checked />
+<input type="radio" name="name" onclick="check(this.value)" value="lightpink" />
+<input type="radio" name="name" onclick="check(this.value)" value="lightcyan" />
+<input type="radio" name="name" onclick="check(this.value)" value="lightgreen" />
+</div>
+<div id="main">
+
+<!-- PROGRESS BAR -->
+<header id="top">
+<progress value="0" max="100" id="state" >
+<div pseudo="-webkit-progress-inner-element">
+<div pseudo="-webkit-progress-bar">
+<div pseudo="-webkit-progress-value" style="width:100%;"></div>
+</div>
+</div>
+</progress>
+<p id="percentage">0%</p>
+</header>
+
+
+<!-- REGISTRATION FORM -->
+<h1>Registration Form</h1>  
+<form name='registration' onSubmit="document.getElementById('status2').style.display='block';alert('submitted successfully');" autocomplete="off" method="post">  
+<ul>  
+
+<!-- ACCOUNT INFORMATION-->
+<fieldset>
+<legend>Account Information</legend>
+
+<li><label>Username <span id="u_name">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right1" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong1" class="r_w" /></div></label></li>
+<li> <span id="view"><img src="icons/user.png" alt="U_N" /></span><input type="text" name="userid" placeholder="User Name" size="12" onchange=" isAlphanumeric(registration.userid,registration.passid,5,12,'USERNAME',u_name,right1,wrong1,state,percentage,status3,error)" /><p id="error"></p></li>  
+<li><label>Password <span id="pwd">*</span><div id="tick"><img src="icons/tick.png" alt="tick" id="right2" class="r_w" /><img src="icons/wrong.png" alt="cross" id="wrong2" class="r_w" /></div></label></li>  
+<li><span id="view"><img src="icons/lock.png" alt="Pwd" /></span><input type="password" name="passid" placeholder="Password" onblur="document.getElementById('state').value=100;document.getElementById('percentage').innerHTML='100%';document.getElementById('status3').style.display='block';" onchange=" isPassword(registration.passid,registration.userid,registration.submit,4,6,'PASSWORD','CONFIRM PASSWORD',pwd,pwd,right2,right2,wrong2,wrong2,state,percentage,status3,error1,nul)"/><p id="error1"></p><p id="nul" style="display:none;"></p></li> 
+
+<li><input type="submit" name="submit" value="Submit" /></li>  
+</fieldset>
+</ul>  
+</form> 
+</div> 
+</body>  
+</html> 
